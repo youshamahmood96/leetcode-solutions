@@ -1,34 +1,34 @@
 class Solution {
-    int k;
-    int[] unique;
+    int[] arr;
+    int m;
     private void swap(int i,int j){
-        int temp = unique[i];
-        unique[i] = unique[j];
-        unique[j] = temp;
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
-    private int quickselect(int l,int r){
-        int pivot = unique[r];
+    private int quick(int l,int r){
+        int pivot = arr[r];
         int p = l;
         for(int i=l;i<=r;i++){
-            if(unique[i]<pivot){
-                swap(i,p);
-                p+=1;
+            if(arr[i]<pivot){
+                swap(p,i);
+                p++;
             }
         }
         swap(p,r);
-        if(p>k){
-            return quickselect(l,p-1);
+        if(p<m){
+            return quick(p+1,r);
         }
-        else if(p<k){
-            return quickselect(p+1,r);
+        else if(p>m){
+            return quick(l,p-1);
         }
         else{
-           return unique[p]; 
+            return arr[p];
         }
     }
-    public int findKthLargest(int[] nums, int l) {
-        unique = Arrays.copyOf(nums,nums.length);
-        k = nums.length - l;
-        return quickselect(0,nums.length-1);
+    public int findKthLargest(int[] nums, int k) {
+        arr = Arrays.copyOf(nums,nums.length);
+        m = nums.length - k;
+        return quick(0,nums.length-1);
     }
 }
