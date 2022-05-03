@@ -11,9 +11,9 @@ class Solution {
                while(set.contains(i+currSeq)){
                    currSeq++;
                }
-               maxSeq = Math.max(currSeq,maxSeq);
-               currSeq = 0;
            }
+           maxSeq = Math.max(currSeq,maxSeq);
+           currSeq = 0;
         }
         return maxSeq;
     }
