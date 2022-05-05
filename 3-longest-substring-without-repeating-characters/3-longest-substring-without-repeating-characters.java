@@ -8,12 +8,12 @@ class Solution {
             if(!set.contains(s.charAt(j))){
                 set.add(s.charAt(j));
                 j++;
-                res = Math.max(res,set.size());
             }
             else{
                 set.remove(s.charAt(i));
                 i++;
             }
+            res = Math.max(res,set.size());
         }
         return res;
     }
