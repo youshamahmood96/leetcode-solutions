@@ -28,6 +28,6 @@ class Solution {
             }
             j++;
         }
-        return match(s1Arr,s2Arr);
+        return false;
     }
 }
