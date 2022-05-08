@@ -7,7 +7,7 @@ class MinStack {
     }
     
     public void push(int val) {
-        q.offer(val);
+        q.add(val);
         arr.add(val);
     }
     
