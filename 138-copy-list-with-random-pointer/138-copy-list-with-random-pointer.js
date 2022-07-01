@@ -12,20 +12,16 @@
  * @return {Node}
  */
 var copyRandomList = function(head) {
-    let map = new Map()
-    let curr = head
-    while(curr){
+    const map = new Map();
+    for(let curr = head;curr;curr = curr.next){
         let newNode = new Node(curr.val)
         map.set(curr,newNode)
-        curr = curr.next
     }
-    curr = head
+    let curr = head
     while(curr){
         let temp = map.get(curr)
-        let next = curr.next ? map.get(curr.next) : null
-        let random = curr.random ? map.get(curr.random) : null
-        temp.next = next
-        temp.random = random
+        temp.next = curr.next ? map.get(curr.next) : null
+        temp.random = curr.random ? map.get(curr.random) : null
         map.set(curr,temp)
         curr = curr.next
     }
