@@ -12,13 +12,14 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-   let arr = []
+    let res = 0
    let inOrder = (root) => {
        if(!root) return;
        if(root.left) inOrder(root.left)
-       arr.push(root.val)
+       k--
+       if(k===0) res = root.val
        if(root.right) inOrder(root.right)
    }
    inOrder(root)
-   return arr[k-1]
+    return res
 };
