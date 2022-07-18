@@ -44,12 +44,8 @@ var maxDepth = function(root) {
     while(!q.isEmpty()){
         let n = q.size();
         for(let i=0;i<n;i++){
-            if(q.peek().left !== null){
-                q.in(q.peek().left)
-            } 
-            if(q.peek().right !== null){
-                q.in(q.peek().right)
-            } 
+            if(q.peek().left !== null) q.in(q.peek().left)
+            if(q.peek().right !== null) q.in(q.peek().right)
             q.out()
         }
         count++
