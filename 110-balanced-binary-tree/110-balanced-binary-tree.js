@@ -10,15 +10,16 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var depth = function(root){
-    if(!root) return 0;
-    let lh = depth(root.left);
-    let rh = depth(root.right);
-    if(lh===-1 || rh===-1) return -1
-    if(Math.abs(lh-rh)>1) return -1;
-    return Math.max(lh,rh)+1;
-}
 var isBalanced = function(root) {
-    let x =  depth(root)
-    return x===-1 ? false : true
+    if(!root) return true
+    let res = true
+    let dfs = (root) => {
+        if(!root) return 0
+        let lh = dfs(root.left)
+        let rh = dfs(root.right)
+        if(Math.abs(lh-rh)>1) res = false
+        return Math.max(lh,rh)+1
+    }
+    dfs(root)
+    return res
 };
