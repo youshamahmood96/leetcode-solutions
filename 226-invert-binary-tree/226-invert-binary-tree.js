@@ -10,21 +10,15 @@
  * @param {TreeNode} root
  * @return {TreeNode}
  */
+let helper = (root) => {
+    if(!root) return null;
+    let temp = root.left
+    root.left = root.right
+    root.right = temp
+    if(root.left) helper(root.left)
+    if(root.right) helper(root.right)
+    return root
+} 
 var invertTree = function(root) {
-    if(!root) return null
-    let res = root
-    let q = [root]
-    while(q.length!==0){
-        let n = q.length
-        for(let i=0;i<n;i++){
-            let curr = q.shift()
-            if(curr.left) q.push(curr.left)
-            if(curr.right) q.push(curr.right)
-                let temp = curr.left
-                curr.left = curr.right
-                curr.right = temp
-            
-        }
-    }
-    return res
+    return helper(root)
 };
