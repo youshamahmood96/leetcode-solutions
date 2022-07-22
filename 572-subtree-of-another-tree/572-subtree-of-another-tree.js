@@ -13,14 +13,18 @@
  */
 var isSameTree = function(p, q) {
     if(!p && !q) return true
-    if(!p || !q || p.val !== q.val) return false
-    return (isSameTree(p.left,q.left) && isSameTree(p.right,q.right))
+    if((!p || !q ) || (p.val!==q.val)) return false;
+    let l = isSameTree(p.left,q.left)
+    let r = isSameTree(p.right,q.right)
+    return l && r
 };
 var isSubtree = function(root, subRoot) {
-    let dfs = (root) => {
-        if(!root) return false
-        if(isSameTree(root,subRoot)) return true
-        return dfs(root.left) || dfs(root.right)
+    let q = [root]
+    while(q.length>0){
+        let curr = q.shift()
+        if(isSameTree(curr,subRoot)) return true;
+        if(curr.left) q.push(curr.left)
+        if(curr.right) q.push(curr.right)
     }
-    return dfs(root)
+    return false;
 };
