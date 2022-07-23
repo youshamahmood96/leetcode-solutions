@@ -12,17 +12,17 @@
  */
 var getMinimumDifference = function(root) {
     let res = Infinity
-    let q = []
+    let prev = null;
     let dfs = (root) => {
         if(!root) return;
         dfs(root.left)
-        q.push(root.val)
+        if(prev!==null){
+            res = Math.min(res,root.val-prev.val)
+        }
+        prev = root
         dfs(root.right)
         return;
     }
     dfs(root)
-    for(let i=1;i<q.length;i++){
-        res = Math.min(res,q[i]-q[i-1])
-    }
     return res
 };
